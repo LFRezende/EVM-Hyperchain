@@ -1,4 +1,4 @@
-connectEl = document.getElementById("connectButton");
+let connectEl = document.getElementById("connectButton");
 
 async function connect() {
   if (typeof window.ethereum != "undefined") {
