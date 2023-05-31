@@ -1,8 +1,9 @@
-async function connect(){
-    
-}
+connectEl = document.getElementById("connectButton");
 
-
-function addStudent{
-
+async function connect() {
+  if (typeof window.ethereum != "undefined") {
+    console.log("There is an Ethereum Based Wallet Available.");
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    connectEl.innerHTML = "Connected";
+  }
 }
