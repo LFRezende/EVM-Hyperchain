@@ -13,8 +13,9 @@ contract LogFluency {
     student[] public allStudents;
 
     // Map student parameters
-    mapping(string => uint256) nameToFluency;
-    mapping(address => string) addressToName;
+    mapping(address => uint256) public idToFluency;
+
+    // mapping(address => string) addressToName; // Name of the student not relevant to the database.
 
     // Through an external database, every student will have an unique ID (wallet)
     // This will have a POC demo through MM
@@ -32,5 +33,6 @@ contract LogFluency {
                 wallet: _wallet
             })
         );
+        idToFluency[_wallet] = _fluencyRate;
     }
 }
