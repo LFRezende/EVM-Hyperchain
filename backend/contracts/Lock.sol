@@ -14,17 +14,21 @@ contract LogFluency {
 
     // Map student parameters
     mapping(address => uint256) public idToFluency;
+    mapping(address => uint256) idToIndex;
 
     // mapping(address => string) addressToName; // Name of the student not relevant to the database.
 
     // Through an external database, every student will have an unique ID (wallet)
     // This will have a POC demo through MM
+
+    // _fluencyRate must be given in with 8 decimal precision.
     function addStudent(
         uint256 _fluencyRate,
         string memory _name,
         string memory _schoolIndex,
         address _wallet
     ) public {
+        idToIndex[_wallet] = allStudents.length; // Before not to waste gas in computing
         allStudents.push(
             student({
                 fluencyRate: _fluencyRate,
@@ -34,5 +38,10 @@ contract LogFluency {
             })
         );
         idToFluency[_wallet] = _fluencyRate;
+    }
+
+    // Precision decimals
+    function getDecimals() public pure returns (uint256) {
+        return uint256(8);
     }
 }
