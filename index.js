@@ -1,7 +1,10 @@
-let connectEl = document.getElementById("connectButton");
 import { abi, contractAddress } from "./constants.js";
 import { ethers } from "./ethers-5.1.esm.min.js";
-connectEl.onclick = addStudent;
+
+let connectEl = document.getElementById("connectButton");
+let appendEl = document.getElementById("appendButton");
+connectEl.onclick = connect;
+
 async function connect() {
   if (typeof window.ethereum != "undefined") {
     console.log("There is an Ethereum Based Wallet Available.");
