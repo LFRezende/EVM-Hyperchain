@@ -1,5 +1,4 @@
 let connectEl = document.getElementById("connectButton");
-
 async function connect() {
   if (typeof window.ethereum != "undefined") {
     console.log("There is an Ethereum Based Wallet Available.");
@@ -11,5 +10,6 @@ async function connect() {
 function addStudent(){
   if (typeof window.ethereum != "undefined"){
     console.log("EVM-Wallet ok.");
+    const 
   }
 }
