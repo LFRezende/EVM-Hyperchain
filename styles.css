@@ -42,7 +42,7 @@ body {
 #connect {
   margin: 20px auto;
 }
-#connectButton {
+.button {
   padding: 5px;
   border-radius: 60px;
   background: #4adf86;
@@ -53,10 +53,12 @@ body {
   border: 0px solid #4adf86;
   padding: 5px 10px;
 }
+#connectButton {
+}
 
-#connectButton:hover {
-  transition: 500ms;
-  padding: 10px 20px;
+.button:hover {
+  transition-duration: 250ms;
+  padding: 8px 16px;
   color: #4adf86;
   background: whitesmoke;
   border-radius: 120px;
