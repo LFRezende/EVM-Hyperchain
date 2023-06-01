@@ -7,3 +7,9 @@ async function connect() {
     connectEl.innerHTML = "Connected";
   }
 }
+
+function addStudent(){
+  if (typeof window.ethereum != "undefined"){
+    console.log("EVM-Wallet ok.");
+  }
+}
