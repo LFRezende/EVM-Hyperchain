@@ -1,5 +1,5 @@
 import { abi, contractAddress } from "./constants.js";
-import { ethers } from "./ethers-5.1.esm.min.js";
+import { ethers } from "./ethers-5.7.esm.min.js";
 
 let connectEl = document.getElementById("connectButton");
 let appendEl = document.getElementById("appendButton");
@@ -8,7 +8,7 @@ let inputWallet = document.getElementById("inputWallet");
 let inputFluency = document.getElementById("inputFluency");
 
 connectEl.onclick = connect;
-appendEl.onclick = addStudent;
+appendEl.onclick = append;
 
 async function connect() {
   if (typeof window.ethereum != "undefined") {
@@ -18,14 +18,17 @@ async function connect() {
   }
 }
 
-async function addStudent() {
+async function append() {
   if (typeof window.ethereum != "undefined") {
     console.log("EVM-Wallet ok.");
     // Grabbing parameters of the student
     const name = inputName.value;
+    console.log(name);
     const wallet = inputWallet.value;
+    console.log(wallet);
     const fluency = inputFluency.value;
-    const schoolIndex = "0x0000000";
+    console.log(fluency);
+    const schoolIndex = "";
 
     // Grabbing parameters for function calling
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -33,17 +36,23 @@ async function addStudent() {
     const cttAddress = contractAddress;
     const contractAbi = abi;
     const contract = new ethers.Contract(cttAddress, contractAbi, signer);
+    console.log(cttAddress);
     // Trying to call function:
     try {
+      console.log("Chegou1");
+      const txTest = await contract.getDecimals();
+      console.log("Pegou so decimais de boa");
       const txResponse = await contract.addStudent(
         fluency,
         name,
         schoolIndex,
         wallet
       );
+      console.log("Chegou2");
       console.log("Student appended to the blockchain database");
     } catch (e) {
       console.log("Deu ruimmmmmmmm");
+      console.log(e);
     }
   }
 }
