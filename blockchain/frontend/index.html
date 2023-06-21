@@ -27,7 +27,8 @@
         </div>
       </div>
       <div class="yspace">
-        Input the parameters of a student as a proof-of-concept
+        Input the parameters of the student
+        <p>Example of ID: 0x873B5EF1E6c6653074c43a77f2bF5230193E8051</p>
       </div>
     </div>
     <div id="form">
@@ -39,6 +40,10 @@
           type="text"
           id="inputWallet"
           placeholder="ID/Wallet of the Student"
+          ,
+          disabled,
+          value="0x873B5EF1E6c6653074c43a77f2bF5230193E8051"
+          ;
         />
       </div>
       <div class="bar">
@@ -50,6 +55,12 @@
       </div>
       <button id="appendButton" class="button">Append</button>
     </div>
+    <div>Keep track of the transaction below!</div>
+    <a
+      href="https://goerli.etherscan.io/address/0xCE9037d07a489d2E7605De5D47838Df6BC5A14E7"
+      target="_blank"
+      >Transactions</a
+    >
     <script src="index.js" type="module"></script>
   </body>
 </html>

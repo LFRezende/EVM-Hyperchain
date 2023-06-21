@@ -7,6 +7,7 @@ let inputName = document.getElementById("inputName");
 let inputWallet = document.getElementById("inputWallet");
 let inputFluency = document.getElementById("inputFluency");
 
+
 connectEl.onclick = connect;
 appendEl.onclick = append;
 
@@ -37,7 +38,7 @@ async function append() {
     // Grabbing parameters for function calling
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const cttAddress = "";
+    let cttAddress = "";
     if (window.ethereum.chainId == 5) cttAddress = contractAddress;
     else if (window.ethereum.chainId == 31337)
       cttAddress = localContractAddress;

@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/LogFluency.sol": {
+      "content": "//SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\ncontract LogFluency {\n    struct student {\n        uint256 fluencyRate;\n        string name;\n        string schoolIndex;\n        address wallet;\n    }\n\n    student[] public allStudents;\n\n    // Map student parameters\n    mapping(address => uint256) public idToFluency;\n    mapping(address => uint256) idToIndex;\n\n    // mapping(address => string) addressToName; // Name of the student not relevant to the database.\n\n    // Through an external database, every student will have an unique ID (wallet)\n    // This will have a POC demo through MM\n\n    // _fluencyRate must be given in with 8 decimal precision.\n    function addStudent(\n        uint256 _fluencyRate,\n        string memory _name,\n        string memory _schoolIndex,\n        address _wallet\n    ) public {\n        idToIndex[_wallet] = allStudents.length; // Before not to waste gas in computing\n        allStudents.push(\n            student({\n                fluencyRate: _fluencyRate,\n                name: _name,\n                schoolIndex: _schoolIndex,\n                wallet: _wallet\n            })\n        );\n        idToFluency[_wallet] = _fluencyRate;\n    }\n\n    // Precision decimals\n    function getDecimals() public pure returns (uint256) {\n        return uint256(8);\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
