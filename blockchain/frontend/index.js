@@ -41,14 +41,12 @@ async function append() {
     try {
       console.log("Chegou1");
       const txTest = await contract.getDecimals();
-      console.log("Pegou so decimais de boa");
       const txResponse = await contract.addStudent(
         fluency,
         name,
         schoolIndex,
         wallet
       );
-      console.log("Chegou2");
       console.log("Student appended to the blockchain database");
     } catch (e) {
       console.log("Deu ruimmmmmmmm");
