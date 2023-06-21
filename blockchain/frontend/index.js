@@ -1,4 +1,4 @@
-import { abi, contractAddress } from "./constants.js";
+import { abi, contractAddress, localContractAddress } from "./constants.js";
 import { ethers } from "./ethers-5.7.esm.min.js";
 
 let connectEl = document.getElementById("connectButton");
@@ -14,7 +14,11 @@ async function connect() {
   if (typeof window.ethereum != "undefined") {
     console.log("There is an Ethereum Based Wallet Available.");
     await window.ethereum.request({ method: "eth_requestAccounts" });
-    connectEl.innerHTML = "Connected";
+    if (window.ethereum.chainId == 5)
+      connectEl.innerHTML = "Connected - Goerli";
+    else if (window.ethereum.chainId == 31337)
+      connectEl.innerHTML = "Connected - Hardhat";
+    else connectEl.innerHTML = "Network Not Supported";
   }
 }
 
@@ -33,7 +37,14 @@ async function append() {
     // Grabbing parameters for function calling
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const cttAddress = contractAddress;
+    const cttAddress = "";
+    if (window.ethereum.chainId == 5) cttAddress = contractAddress;
+    else if (window.ethereum.chainId == 31337)
+      cttAddress = localContractAddress;
+    else {
+      console.log("Not supported network!");
+      return;
+    }
     const contractAbi = abi;
     const contract = new ethers.Contract(cttAddress, contractAbi, signer);
     console.log(cttAddress);
